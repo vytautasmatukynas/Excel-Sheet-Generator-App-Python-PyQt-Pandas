@@ -3,7 +3,7 @@
 I created this app basically for generating sheets for pallet content info, that i won't have to write everything by 
 hand from main excel.
 
-This app generates excel file with seperate sheets from main excel file. It searches for column "column_name" with 
+This app generates excel file with separate sheets from main excel file. It searches for column "column_name" with 
 numbers or names, sorts that column and splits it in several tables, then puts everything to new excel file and creates 
 sheets.
 
