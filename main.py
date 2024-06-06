@@ -83,6 +83,7 @@ class MainWindow(QDialog):
             # get file dir only
             self.file_dir_ = Path(self.directory).parents[0]
             self.file_name.setText(f"Selected File Name:\n'{self.file_name_}'")
+            self.file_name.setStyleSheet("""QLabel { color: black; }""")
 
         except:
             self.file_name.setText(f"File doesn't exist:\n'{self.file_name_}'")
@@ -178,9 +179,18 @@ class MainWindow(QDialog):
                         self.progress_bar.setValue(progress_val)
 
                         if 1 <= progress_val < 100:
+                            self.select_button.setEnabled(False)
                             self.generate_button.setEnabled(False)
-                        else:
+                            self.file_name.setText("Generating new file")
+                            self.file_name.setStyleSheet("""QLabel { color: navy; }""")
+                        elif progress_val == 0:
+                            self.select_button.setEnabled(True)
                             self.generate_button.setEnabled(True)
+                        elif progress_val == 100:
+                            self.select_button.setEnabled(True)
+                            self.generate_button.setEnabled(True)
+                            self.file_name.setText(f"File was generated:\n'{self.saved_file_name.text()}.xlsx'")
+                            self.file_name.setStyleSheet("""QLabel { color: green; }""")
 
         except:
             self.file_name.setText(f"Column doesn't exist: '{column_name}'\nPlease enter valid column name")
